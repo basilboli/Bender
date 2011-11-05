@@ -30,7 +30,7 @@ object Main extends App {
   def activatePlugins(): Unit = {
     searchPlugins foreach {
       pluginString =>
-
+        println("registring : " + pluginString.name)
         val pluginclass = Class.forName(pluginString.name).asInstanceOf[Class[Actor]]
         val actorref = actorOf(pluginclass)
         actorref.start()
