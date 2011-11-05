@@ -9,7 +9,7 @@ trait Plugin extends akka.actor.Actor {
 
 }
 
-trait SimplePlugin extends Plugin {
+abstract class SimplePlugin extends Plugin {
 
   def process(m:InputMessage): Option[AnswerMessage]
   final def receive = {
