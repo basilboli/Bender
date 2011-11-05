@@ -48,7 +48,7 @@ object Main extends App {
     val classes = finder.getClasses
     //classes.foreach(println(_))
     val classMap = ClassFinder.classInfoMap(classes)
-    ClassFinder.concreteSubclasses("bender.plugin.SimplePlugin", classMap)
+    ClassFinder.concreteSubclasses("bender.plugin.Plugin", classMap)
   }
 
 }
