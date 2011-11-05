@@ -1,6 +1,6 @@
 package bender.ahoy
 
-import bender.plugin.SimplePlugin
+import bender.plugin.{AnswerMessage, InputMessage, SimplePlugin}
 import scala.Some
 
 
@@ -9,7 +9,7 @@ class AhoyPlugin extends SimplePlugin {
 
   def process(i:InputMessage)  = {
     i.question match {
-      case "Ahoy !" => Some(AnswerMessage(i.id, "Ahoy !"))
+      case "Ahoy !" => Some(AnswerMessage(i.id, "Ahoy !", None))
       case _ => None
     }
   }

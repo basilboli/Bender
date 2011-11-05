@@ -9,8 +9,7 @@ trait Plugin extends akka.actor.Actor {
 
 
 
-  case class InputMessage(id: Int ,question: String, callback: ActorRef)
-  case class AnswerMessage(id: Int, answer: String)
+
 }
 
 trait SimplePlugin extends Plugin {
@@ -21,4 +20,7 @@ trait SimplePlugin extends Plugin {
   }
 }
 
+case class InputMessage(id: Int ,question: String, callback: ActorRef)
+case class AnswerMessage(id: Int, answer: String, confiance: Option[Confiance])
 
+case class Confiance(i: Int, usefullness: Int)
