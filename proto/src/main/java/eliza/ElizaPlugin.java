@@ -15,6 +15,16 @@ public class ElizaPlugin extends SuperSimplePluginForJava{
 
     static String scriptPathname = "/script";
     static final boolean local = true;
+    ElizaMain eliza     ;
+
+    public ElizaPlugin() {
+        URL location =  ElizaPlugin.class.getResource(scriptPathname);
+                String FullPath = location.getPath();
+
+
+        eliza = new ElizaMain();
+                eliza.readScript(local,FullPath);
+    }
 
 
     public String name() {
@@ -22,18 +32,9 @@ public class ElizaPlugin extends SuperSimplePluginForJava{
     }
 
      public String process(String s) {
-           if(s.equals("Bonjour !")) {
-               //System.out.println((new File(".")).getAbsolutePath())    ;
 
-                URL location =  ElizaPlugin.class.getResource(scriptPathname);
-                String FullPath = location.getPath();
-
-                ElizaMain eliza = new ElizaMain();
-                eliza.readScript(local,FullPath);
                 return eliza.processInput(s);
-           }
 
-         return null;
      }
 
 }
