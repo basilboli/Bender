@@ -29,6 +29,8 @@ class MdFindPlugin extends SimplePlugin {
     val count: Int = cToInt("""mdfind -name -count """"+ i.question + '"' !!)
     val files : Stream[String] = """mdfind -name """"+ i.question + '"' lines_!
     val linesToReturn = scala.math.min(4,count)
+
+    if()
     var xs = new Array[String](linesToReturn)
    files.copyToArray(xs,0, linesToReturn)
 

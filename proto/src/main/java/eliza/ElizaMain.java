@@ -293,7 +293,7 @@ import java.net.URLConnection;
         DataInputStream in;
         try {
             if (local) {
-                in = new DataInputStream(new FileInputStream(script));
+                in = new DataInputStream(getClass().getResourceAsStream("/script"));
             } else {
                 try {
                     URL url = new URL(script);

@@ -18,7 +18,7 @@ public class ElizaPlugin extends SuperSimplePluginForJava{
     ElizaMain eliza     ;
 
     public ElizaPlugin() {
-        URL location =  ElizaPlugin.class.getResource(scriptPathname);
+        URL location =  this.getClass().getResource(scriptPathname);
                 String FullPath = location.getPath();
 
 
