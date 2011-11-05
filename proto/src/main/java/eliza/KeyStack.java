@@ -1,4 +1,4 @@
-package Eliza;
+package eliza;
 
 /**
  *  A stack of keys.

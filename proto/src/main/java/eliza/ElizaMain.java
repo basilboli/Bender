@@ -1,4 +1,4 @@
-package Eliza;
+package eliza;
 
 import java.awt.*;
 import java.io.DataInputStream;

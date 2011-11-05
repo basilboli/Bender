@@ -1,4 +1,4 @@
-package Eliza;
+package eliza;
 
 /**
  *  Eliza key.

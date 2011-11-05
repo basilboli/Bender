@@ -1,4 +1,4 @@
-package Eliza;
+package eliza;
 
 /**
  *  Eliza pre-post entry (two words).
