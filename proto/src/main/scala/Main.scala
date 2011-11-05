@@ -2,11 +2,14 @@ package bender
 
 import jline._
 import akka.actor.Actor._
-import akka.actor.Actor
+import akka.actor._
 import java.io.File
 import org.clapper.classutil.ClassFinder
+import akka.actor.{ActorRef, Actor}
+import plugin.{AnswerMessage, InputMessage, Plugin}
 
 object Main extends App {
+
   println("Hello World")
 
 
@@ -24,18 +27,28 @@ object Main extends App {
   }
 
 
-  def activatePlugins() : Unit = {
-    searchPlugins foreach {println(_)}
+  def activatePlugins(): Unit = {
+    searchPlugins foreach {
+      pluginString =>
+
+        val pluginclass = Class.forName(pluginString.name).asInstanceOf[Class[Actor]]
+        val actorref = actorOf(pluginclass)
+        actorref.start()
+
+
+    }
 
   }
 
 
   def searchPlugins() = {
-    val finder = ClassFinder ()
+    val classpath = List(".").map(new File(_))
+
+    val finder = ClassFinder(classpath)
     val classes = finder.getClasses
-    classes.foreach(println(_))
-    val classMap = ClassFinder.classInfoMap (classes)
-    ClassFinder.concreteSubclasses ("bender.plugin.SimplePlugin", classMap)
+    //classes.foreach(println(_))
+    val classMap = ClassFinder.classInfoMap(classes)
+    ClassFinder.concreteSubclasses("bender.plugin.Plugin", classMap)
   }
 
 }
@@ -44,6 +57,15 @@ object Main extends App {
 class MessageReceiverActor extends Actor {
   def receive = {
     case ":quit" => System.exit(0)
-    case s: String => println("receive string : " + s)
+    case s: String => {
+      val o = InputMessage(s.hashCode(), s ,this.self)
+      val listActor = registry.actorsFor[bender.plugin.Plugin]
+      listActor.par.map {a => a ! o}
+    }
+    case o:AnswerMessage => {
+      println(o.answer)
+
+    }
   }
 }
+
