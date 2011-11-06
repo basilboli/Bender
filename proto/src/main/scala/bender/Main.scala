@@ -25,11 +25,11 @@ val benderString = """
     |_`-'-'-'_|    What ?  """
 
 
-  val terminal = Terminal.getTerminal
+  val terminal = Terminal.setupTerminal()
 
   val console = new ConsoleReader()
-  console.setDefaultPrompt("B>")
-  terminal.beforeReadLine(console, "B>", null)
+  //console.setDefaultPrompt("B>")
+  terminal.afterReadLine(console, null, null)
 
   val receiveActor = actorOf[MessageReceiverActor].start
 
@@ -118,7 +118,7 @@ class PrintBufferProcessorActor extends Actor {
          publish()
       message = Some(i)
 
-      Future{Thread.sleep(1500); this.self ! 'publish}
+      Future{Thread.sleep(2000); this.self ! 'publish}
 
     }
 
@@ -129,7 +129,7 @@ class PrintBufferProcessorActor extends Actor {
 
   def publish() {
 
- selectMessage(listOfAnswer). map(o => println(o.answer))
+ selectMessage(listOfAnswer). map(o => println("#" + o.answer))
 
     //purge de la liste des messages
     listOfAnswer = List.empty[AnswerMessage]

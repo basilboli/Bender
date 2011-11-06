@@ -55,7 +55,7 @@ public class StackOverflowPlugin extends SuperSimplePluginForJava{
             }
          }
          else
-            return "sorry, that is not my business";
+            return null; //"sorry, that is not my business";
 
          return null;
      }
