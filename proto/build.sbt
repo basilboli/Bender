@@ -13,7 +13,6 @@ mainClass := Some("bender.Main")
 
 seq(assemblySettings: _*)
 
-
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies += "se.scalablesolutions.akka" % "akka-actor" % "1.2"
@@ -39,3 +38,14 @@ libraryDependencies +=  "org.apache.httpcomponents" % "httpclient" % "4.0.1"
 
 
 libraryDependencies +=   "org.apache.httpcomponents" % "httpcore" % "4.0.1"
+
+
+resolvers +="gson" at "http://google-gson.googlecode.com/svn/mavenrepo/"
+
+libraryDependencies += "com.google.code.gson" % "gson" % "1.7.1"
+
+resolvers +="httpclient" at "http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcomponents-client/4.1"
+
+libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.1"
+
+
