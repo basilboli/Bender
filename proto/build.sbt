@@ -28,3 +28,6 @@ libraryDependencies += "org.clapper" %% "grizzled-slf4j" % "0.6.6"
 resolvers += "Java.net Maven 2 Repo" at "http://download.java.net/maven/2"
 
 libraryDependencies += "org.clapper" %% "avsl" % "0.3.6"
+
+
+libraryDependencies += "org.scalatest" %% "scalatest" % "1.6.1" % "test"

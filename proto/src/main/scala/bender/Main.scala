@@ -127,24 +127,13 @@ class PrintBufferProcessorActor extends Actor {
 
   def publish() {
 
-    val confianceSort = (c1:Confiance, c2:Confiance) => {
-      if(c1.usefullness == c2.usefullness) {
-        c1.i > c2.i
-      }   else {
-        c1.usefullness > c2.usefullness
-      }
-    }
+    // Récupération du maximum de confiance dans les résultats disponibles
+    val maxConfiance: Option[Confiance] = (for( o <- listOfAnswer; c <- o.confiance) yield c).sorted.headOption
 
-    val OptionConfianceSort = (oc1:Option[Confiance], oc2:Option[Confiance]) => {
-      (for (c1 <- oc1 ; c2 <- oc2) yield confianceSort(c1,c2)).headOption getOrElse  true
-    }
-
-    println(listOfAnswer)
-
-    val maxConfiance: Option[Confiance] = (listOfAnswer map (o => o.confiance) ).toList.sortWith(OptionConfianceSort).headOption.getOrElse(None)
-
+    // Affichage du premier message qui correspond au maximum de confiance
     listOfAnswer.filter(o => o.confiance == maxConfiance).headOption map(o => println(o.answer))
 
+    //purge de la liste des messages
     listOfAnswer = List.empty[AnswerMessage]
   }
 }
