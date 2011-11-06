@@ -33,6 +33,8 @@ public class ElizaPlugin extends SuperSimplePluginForJava{
 
      public String process(String s) {
 
+         if(s.contains(":")) return null;
+
                 return eliza.processInput(s);
 
      }

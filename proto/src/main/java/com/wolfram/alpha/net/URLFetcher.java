@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.logging.Logger;
+
 
 import com.wolfram.alpha.WAException;
 import com.wolfram.alpha.net.impl.HttpTransaction;
@@ -37,7 +37,7 @@ public class URLFetcher {
     // WAHttpException, HttpException, IOException
     private volatile Exception exception = null;
     
-    private static Logger logger = Logger.getLogger("com.wolfram.alpha.net.URLFetcher");
+    //private static Logger logger = Logger.getLogger("com.wolfram.alpha.net.URLFetcher");
     
     // Largest result that will be allowed to be returned as a byte[] instead of in a file.
     private static final int MAX_BUFFER_SIZE = 1000000;
@@ -125,7 +125,7 @@ public class URLFetcher {
                 return;
             
             long start = System.currentTimeMillis();
-            logger.info("Downloading url " + url);
+       //    logger.info("Downloading url " + url);
             
             InputStream responseStream = null;
             OutputStream outStream = null; 
@@ -190,15 +190,15 @@ public class URLFetcher {
             }
                         
             if (exception != null) {
-                logger.warning("Exception downloading URL " + url + ". " + exception);
+         //       logger.warning("Exception downloading URL " + url + ". " + exception);
             }
             
-            if (wasCancelled)
-                logger.info("Download of URL " + url + " was cancelled by user. Elapsed millis: " + 
-                                (System.currentTimeMillis() - start));
-            else
-                logger.info("Finished downloading URL " + url +
-                        ". Elapsed millis: " + (System.currentTimeMillis() - start));
+            //if (wasCancelled)
+           //     logger.info("Download of URL " + url + " was cancelled by user. Elapsed millis: " +
+            //                    (System.currentTimeMillis() - start));
+            //else
+             //   logger.info("Finished downloading URL " + url +
+              //          ". Elapsed millis: " + (System.currentTimeMillis() - start));
         } finally {
             isFinished = true;
         }

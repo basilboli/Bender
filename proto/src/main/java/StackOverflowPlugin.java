@@ -62,7 +62,7 @@ public class StackOverflowPlugin extends SuperSimplePluginForJava{
                  //System.out.print(getQuestionSnippet(array.get(mostVotedQuestionId)));
          }
          else
-            return "sorry, that is not my business";
+            return null; //"sorry, that is not my business";
 
          return null;
      }
