@@ -94,7 +94,7 @@ public class WolframPlugin extends SuperSimplePluginForJava {
               //  System.out.println("Query was not understood; no results available.");
             } else {
                 // Got a result.
-                System.out.println("Successful query. Pods follow:\n");
+                //System.out.println("Successful query. Pods follow:\n");
                 for (WAPod pod : queryResult.getPods()) {
                     if (!pod.isError()) {
                         System.out.println(pod.getTitle());
