@@ -4,7 +4,7 @@ scalaVersion := "2.9.1"
 
 name := "Bender"
 
-libraryDependencies += "jline" % "jline" % "0.9.94"
+libraryDependencies += "jline" % "jline" % "0.9.94" intransitive()
 
 
 mainClass := Some("bender.Main")
