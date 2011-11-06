@@ -69,7 +69,10 @@ public class WolframPlugin extends SuperSimplePluginForJava {
 
     public String process(String s) {
 
-
+        if(!s.contains(":wolf"))  {
+            return null;
+        }  else {
+           s =  s.replace(":wolf", "");
 
         // Create the query.
         WAQuery query = engine.createQuery();
@@ -117,7 +120,7 @@ public class WolframPlugin extends SuperSimplePluginForJava {
         } catch (WAException e) {
             e.printStackTrace();
         }
-
+        }
         return null;
     }
 
