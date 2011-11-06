@@ -31,3 +31,11 @@ libraryDependencies += "org.clapper" %% "avsl" % "0.3.6"
 
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.6.1" % "test"
+
+
+libraryDependencies +=  "commons-codec" % "commons-codec" % "1.3"
+
+libraryDependencies +=  "org.apache.httpcomponents" % "httpclient" % "4.0.1"
+
+
+libraryDependencies +=   "org.apache.httpcomponents" % "httpcore" % "4.0.1"

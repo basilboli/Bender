@@ -10,6 +10,7 @@ import akka.dispatch.Future
 import collection.mutable.HashMap
 import plugin.{Confiance, AnswerMessage, InputMessage}
 import scala.Some
+import bender.plugin.Plugin._
 
 object Main extends App {
 val benderString = """
@@ -127,14 +128,13 @@ class PrintBufferProcessorActor extends Actor {
 
   def publish() {
 
-    // Récupération du maximum de confiance dans les résultats disponibles
-    val maxConfiance: Option[Confiance] = (for( o <- listOfAnswer; c <- o.confiance) yield c).sorted.headOption
-
-    // Affichage du premier message qui correspond au maximum de confiance
-    listOfAnswer.filter(o => o.confiance == maxConfiance).headOption map(o => println(o.answer))
+ selectMessage(listOfAnswer). map(o => println(o.answer))
 
     //purge de la liste des messages
     listOfAnswer = List.empty[AnswerMessage]
   }
+
+
+
 }
 
