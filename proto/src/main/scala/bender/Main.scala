@@ -28,6 +28,7 @@ val benderString = """
   val terminal = Terminal.getTerminal
 
   val console = new ConsoleReader()
+  console.setDefaultPrompt("B>")
   terminal.beforeReadLine(console, "B>", null)
 
   val receiveActor = actorOf[MessageReceiverActor].start
