@@ -1,5 +1,5 @@
-initial: How do you do.  Please tell me your problem.
-final: Goodbye.  It was nice talking to you.
+initial: Kill all humans, kill all humans, mus' kill all humans...
+final: Goodbye.  Bite my shiny metal ass!
 quit: bye
 quit: goodbye
 quit: done
@@ -124,7 +124,7 @@ key: perhaps 0
 	reasmb: How likely, would you estimate ?
 key: name 15
   decomp: *
-    reasmb: I am not interested in names.
+    reasmb: I am not interested in names, Bite my glorious golden ass!
     reasmb: I've told you before, I don't care about names -- please continue.
 key: deutsch 0
   decomp: *

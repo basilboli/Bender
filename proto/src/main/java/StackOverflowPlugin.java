@@ -41,18 +41,25 @@ public class StackOverflowPlugin extends SuperSimplePluginForJava{
      public String process(String s){
 
          if (s.contains("stackoverflow")) {
-            String url = SEARCH_QUESTIONS_URL.replace("{query}",
-                     s.replace("stackoverflow", "").replace(" ", "%20"));
-
+            String url = SEARCH_QUESTIONS_URL.replace("{query}",s.replace("stackoverflow", "").replace(" ", "%20"));
+             //searching stack for query
              JsonElement questions = fetch(url).get("questions");
              if (questions.isJsonArray()) {//if we have several questions for the query
                  JsonArray array = questions.getAsJsonArray();
                  if (array.size() == 0)
                      return "i don't know";
 
-                 int mostVotedQuestionId = getMostVotedQuestion(array);
-                 System.out.print(getQuestionSnippet(array.get(mostVotedQuestionId)));
+                 Iterator<JsonElement> iterator = array.iterator();
+                 while (iterator.hasNext()) {
+                     //fetching exact question and show his body
+                     url = SHOW_QUESTION_URL.replace("{id}",iterator.next().getAsJsonObject().get("question_id").toString());
+                     questions = fetch(url).get("questions");
+
+                     System.out.print(fetch(url).get("questions").getAsJsonObject().get("body"));
+                 }
             }
+                 //int mostVotedQuestionId = getMostVotedQuestion(array);
+                 //System.out.print(getQuestionSnippet(array.get(mostVotedQuestionId)));
          }
          else
             return "sorry, that is not my business";
@@ -91,12 +98,13 @@ public class StackOverflowPlugin extends SuperSimplePluginForJava{
         return null;
     }
 
+
     /**
      * getting most voted question
      * @param
      * @return
      */
-     private int getMostVotedQuestion(JsonArray array) {
+     private int getMostVotedQuestionId(JsonArray array) {
 
          int idOfMax = 0;
          int maxVote = 0;
@@ -115,22 +123,35 @@ public class StackOverflowPlugin extends SuperSimplePluginForJava{
          return idOfMax;
      }
 
+    private int getTheBestAnswerId (JsonArray array) {
 
-    private String getTheBestAnswer (String id) {
-        //TODO
-         return null;
+        int idOfMax = 0;
+        int maxVoteValue = 0;
+        int j=0;
+        Iterator<JsonElement> iterator = array.iterator();
+
+        while (iterator.hasNext()) {
+            JsonElement currentVote= iterator.next().getAsJsonObject().get("up_vote_count");
+            if (Integer.parseInt(currentVote.toString())>maxVoteValue) {
+                maxVoteValue = Integer.parseInt(currentVote.toString());
+                idOfMax = j;
+            }
+            j++;
+        }
+
+        return idOfMax;
     }
-
 
     /**
      * get question presentation
      * @param element
      * @return
      */
-    private String getQuestionSnippet (JsonElement element) {
+    private String getQuestionTitleAndBody (JsonElement element) {
         StringBuffer result = new StringBuffer();
-        String title= element.getAsJsonObject().get("title").toString();
+        String title = element.getAsJsonObject().get("title").toString();
         result.append("Question with title: "+title+"\n");
+        String body  = element.getAsJsonObject().get("body").toString();
         return result.toString();
     }
 
