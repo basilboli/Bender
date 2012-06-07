@@ -1,16 +1,26 @@
-This is Simple Intelligent Robust Interace (SIRI) a.k.a Bender to assist you in your everyday life.
-Try it!
+Bender 
+===
+Simple Intelligent Robust Interace (SIRI) a.k.a Bender
 
-Current features: 
+Description
+===
+This is CLI utility to assist you in your everyday life.
+
+Current features
+===
 integration with eliza, wolfram alpha(command :wolf), stackoverflow (command :stack)
 
-Planned: 
+TODO
+===
 integration with twitter, facebook, google services.
 
-Prerequisites: 
+Prerequisites
+===
 sbt (https://github.com/harrah/xsbt/wiki)
 java>="1.6.0_26" 
 
+HOWTO RUN
+===
 1. download project
 2. change directory proto
 3. sbt run 
