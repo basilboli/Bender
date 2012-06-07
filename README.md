@@ -5,6 +5,7 @@ Simple Intelligent Robust Interace (SIRI) a.k.a Bender
 Description
 ===
 This is CLI utility to assist you in your everyday life.
+Project written in java and scala for fun during the hackday paris.
 
 Current features
 ===
